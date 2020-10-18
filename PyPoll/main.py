@@ -11,6 +11,7 @@ Counter_Correy = 1
 Counter_Li = 1
 Counter_0Tooley = 1
 
+#Open election_data.csv file for reading
 with open("python-challenge/PyPoll/Resources/election_data.csv", 'r') as input_file:
     csvreader = csv.reader(input_file)
     header = next(csvreader)
@@ -65,7 +66,7 @@ with open("python-challenge/PyPoll/Resources/election_data.csv", 'r') as input_f
         if vote == Winner:
             print(f"Winner: {name}")
     print("-----------------------------------")
-
+#Create text file with Analysis
     with open("PyPollAnalysis.txt", "w") as outputfile:
         outputfile.write("Election Results\n")
         outputfile.write("-----------------------------------\n")
