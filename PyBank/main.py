@@ -9,7 +9,7 @@ print("-----------------------------")
 with open("python-challenge/PyBank/Resources/budget_data.csv", 'r') as input_file:
      csvreader = csv.reader(input_file)
      header = next(csvreader)
-
+     
      for row in csvreader:
 
           totalmonths.append(row[0])
@@ -25,12 +25,24 @@ with open("python-challenge/PyBank/Resources/budget_data.csv", 'r') as input_fil
      Changes_Dc = {totalmonths[i + 1]: Changes[i] for i in range(len(Changes))}         
      Greatest_Increase = (max(Changes))
      Greatest_Decrease = (min(Changes))
-
+     
      for month, changes in Changes_Dc.items():
           if changes == Greatest_Increase:
                print(f"Greatest Increase in Profits: {month} (${Greatest_Increase})")
           elif changes == Greatest_Decrease:
                print(f"Greatest Decrease in Profits: {month} (${Greatest_Decrease})")
+     
+     with open("PyBankAnalysis.txt", "w") as outputfile:
+
+        outputfile.write("Financial Analysis\n")
+        outputfile.write("-----------------------------------\n")
+        outputfile.write(f"Total Months : {len(totalmonths)}\n")
+        outputfile.write(f"Total: ${sum(Profit_Losses)}\n")
+        outputfile.write(f"Average Change: ${round(Average, 2)}\n")
+        outputfile.write("Greatest Increase in Profits: Feb-2012 ($1926159)\n")
+        outputfile.write("Greatest Decrease in Profits: Sep-2014 ($-2196167)\n")
+
+       
 
      
 
