@@ -8,6 +8,7 @@ Counter = 0
 print("Financial Analysis")
 print("-----------------------------")
 
+#Open budget_data.csv file for reading 
 with open("python-challenge/PyBank/Resources/budget_data.csv", 'r') as input_file:
      csvreader = csv.reader(input_file)
      header = next(csvreader)
