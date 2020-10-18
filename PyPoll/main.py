@@ -11,8 +11,6 @@ Counter_Correy = 1
 Counter_Li = 1
 Counter_0Tooley = 1
 
-print("Election Results")
-print("-----------------------------------")
 with open("python-challenge/PyPoll/Resources/election_data.csv", 'r') as input_file:
     csvreader = csv.reader(input_file)
     header = next(csvreader)
@@ -51,7 +49,8 @@ with open("python-challenge/PyPoll/Resources/election_data.csv", 'r') as input_f
     Percent_0Tooley = (Counter_0Tooley/Total_Votes)*100
 
     #Print Analysis
-
+    print("Election Results")
+    print("-----------------------------------")
     print(f"Total Votes: {Total_Votes}")
     print("-----------------------------------")
     print(f"Khan: {Percent_Khan: .3f}% ({Counter_Khan})")
@@ -65,12 +64,24 @@ with open("python-challenge/PyPoll/Resources/election_data.csv", 'r') as input_f
     for name, vote in Combined_Unique.items():
         if vote == Winner:
             print(f"Winner: {name}")
-
     print("-----------------------------------")
 
-with open("PyPoll_Analysis.csv", 'w') as output_file:
-    csvwriter = csv.writer(output_file)
-    csvwriter.writerows(csvreader)
+    with open("PyPollAnalysis.txt", "w") as outputfile:
+        outputfile.write("Election Results\n")
+        outputfile.write("-----------------------------------\n")
+        outputfile.write(f"Total Votes: {Total_Votes}\n")
+        outputfile.write("-----------------------------------\n")
+        outputfile.write(f"Khan: {Percent_Khan: .3f}% ({Counter_Khan})\n")
+        outputfile.write(f"Correy: {Percent_Corey: .3f}% ({Counter_Correy})\n")
+        outputfile.write(f"Li: {Percent_Li: .3f}% ({Counter_Li})\n")
+        outputfile.write(f"O'Tooley: {Percent_0Tooley: .3f}% ({Counter_0Tooley})\n")
+        outputfile.write("-----------------------------------\n")
+        outputfile.write(f"Winner: Khan\n")
+        outputfile.write("-----------------------------------\n")
+
+
+
+    
     
 
 
