@@ -30,28 +30,39 @@ with open("python-challenge/PyPoll/Resources/election_data.csv", 'r') as input_f
             Counter_Li += 1
         elif x == "O'Tooley":
             Counter_0Tooley += 1
-Unique_List_Votes.append(Counter_Khan)
-Unique_List_Votes.append(Counter_Correy)
-Unique_List_Votes.append(Counter_Li)
-Unique_List_Votes.append(Counter_0Tooley)
-Total_Votes = sum(Unique_List_Votes)
+
+    Unique_List_Votes.append(Counter_Khan)
+    Unique_List_Votes.append(Counter_Correy)
+    Unique_List_Votes.append(Counter_Li)
+    Unique_List_Votes.append(Counter_0Tooley)
+    Combined_Unique = {Unique_List[i]: Unique_List_Votes[i] for i in range(len(Unique_List_Votes))} 
+
+    Total_Votes = sum(Unique_List_Votes)
 
 #Make a dictionary to combine Candidate and their Total Votes
 
-Percent_Khan = (Counter_Khan/Total_Votes)*100
-Percent_Corey = (Counter_Correy/Total_Votes)*100
-Percent_Li = (Counter_Li/Total_Votes)*100
-Percent_0Tooley = (Counter_0Tooley/Total_Votes)*100
+    Percent_Khan = (Counter_Khan/Total_Votes)*100
+    Percent_Corey = (Counter_Correy/Total_Votes)*100
+    Percent_Li = (Counter_Li/Total_Votes)*100
+    Percent_0Tooley = (Counter_0Tooley/Total_Votes)*100
 
-print(f"Total Votes: {Total_Votes}")
-print("-----------------------------------")
-print(f"Khan: {round(Percent_Khan,5)}% ({Counter_Khan})")
-print(f"Correy: {round(Percent_Corey,5)}% ({Counter_Correy})")
-print(f"Li: {round(Percent_Li,5)}% ({Counter_Li})")
-print(f"O'Tooley: {round(Percent_0Tooley,3)}% ({Counter_0Tooley})")
-print("-----------------------------------")
-print("Winner: Khan")
-print("-----------------------------------")
+    print(f"Total Votes: {Total_Votes}")
+    print("-----------------------------------")
+    print(f"Khan: {round(Percent_Khan,5)}% ({Counter_Khan})")
+    print(f"Correy: {round(Percent_Corey,5)}% ({Counter_Correy})")
+    print(f"Li: {round(Percent_Li,5)}% ({Counter_Li})")
+    print(f"O'Tooley: {round(Percent_0Tooley,3)}% ({Counter_0Tooley})")
+    print("-----------------------------------")
+
+    Winner = max(Unique_List_Votes)
+
+    for name, vote in Combined_Unique.items():
+        if vote == Winner:
+            print(f"Winner: {name}")
+            
+    print("-----------------------------------")
+
+
 
 
     
