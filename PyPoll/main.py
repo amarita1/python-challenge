@@ -1,5 +1,6 @@
 import csv
 
+
 Original_List = []
 Unique_List = []
 Unique_List_Votes = []
@@ -17,8 +18,10 @@ with open("python-challenge/PyPoll/Resources/election_data.csv", 'r') as input_f
     header = next(csvreader)
 
     for row in csvreader:
+        #Create List of Candidates
         Original_List.append(row[2])
 
+    #Create Candidate List with No Duplicates and Count Number of Votes per Candidate
     for x in Original_List:
         if x not in Unique_List:
             Unique_List.append(x)
@@ -31,27 +34,30 @@ with open("python-challenge/PyPoll/Resources/election_data.csv", 'r') as input_f
         elif x == "O'Tooley":
             Counter_0Tooley += 1
 
+    #Create List of Votes per Candidate 
     Unique_List_Votes.append(Counter_Khan)
     Unique_List_Votes.append(Counter_Correy)
     Unique_List_Votes.append(Counter_Li)
     Unique_List_Votes.append(Counter_0Tooley)
+
+    #Combine No Duplicate Candidate List and Votes Per Candidate to Dictionary
     Combined_Unique = {Unique_List[i]: Unique_List_Votes[i] for i in range(len(Unique_List_Votes))} 
 
+    #Find Percentage of Votes Won by Each Candidate (Candidate Votes/Total Votes)
     Total_Votes = sum(Unique_List_Votes)
-
-#Make a dictionary to combine Candidate and their Total Votes
-
     Percent_Khan = (Counter_Khan/Total_Votes)*100
     Percent_Corey = (Counter_Correy/Total_Votes)*100
     Percent_Li = (Counter_Li/Total_Votes)*100
     Percent_0Tooley = (Counter_0Tooley/Total_Votes)*100
 
+    #Print Analysis
+
     print(f"Total Votes: {Total_Votes}")
     print("-----------------------------------")
-    print(f"Khan: {round(Percent_Khan,5)}% ({Counter_Khan})")
-    print(f"Correy: {round(Percent_Corey,5)}% ({Counter_Correy})")
-    print(f"Li: {round(Percent_Li,5)}% ({Counter_Li})")
-    print(f"O'Tooley: {round(Percent_0Tooley,3)}% ({Counter_0Tooley})")
+    print(f"Khan: {Percent_Khan: .3f}% ({Counter_Khan})")
+    print(f"Correy: {Percent_Corey: .3f}% ({Counter_Correy})")
+    print(f"Li: {Percent_Li: .3f}% ({Counter_Li})")
+    print(f"O'Tooley: {Percent_0Tooley: .3f}% ({Counter_0Tooley})")
     print("-----------------------------------")
 
     Winner = max(Unique_List_Votes)
@@ -59,8 +65,12 @@ with open("python-challenge/PyPoll/Resources/election_data.csv", 'r') as input_f
     for name, vote in Combined_Unique.items():
         if vote == Winner:
             print(f"Winner: {name}")
-            
+
     print("-----------------------------------")
+
+with open("PyPoll_Analysis.csv", 'w') as output_file:
+    csvwriter = csv.writer(output_file)
+    
 
 
 
