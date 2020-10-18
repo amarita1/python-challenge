@@ -70,6 +70,7 @@ with open("python-challenge/PyPoll/Resources/election_data.csv", 'r') as input_f
 
 with open("PyPoll_Analysis.csv", 'w') as output_file:
     csvwriter = csv.writer(output_file)
+    csvwriter.writerows(csvreader)
     
 
 
